@@ -25,11 +25,9 @@ public class Buttons : MonoBehaviour {
 		arrow = GameObject.Find ("Arrow");
 		if (arrow == null)
 			return;
-
 	}
 		
 	public void OnMouseUpAsButton(){
-
 		switch (gameObject.name) {
 
 		case "PlayGame":
@@ -87,6 +85,7 @@ public class Buttons : MonoBehaviour {
 			break;
 		}
 	}
+
 
 	IEnumerator Play(){
 
