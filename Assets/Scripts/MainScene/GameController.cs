@@ -42,10 +42,10 @@ public class GameController : MonoBehaviour {
 
 		//PlayerPrefs.SetFloat ("MinLetSpeed", 2f);
 		//PlayerPrefs.SetFloat ("MaxLetSpeed", 4f);
-		Destroy (trail);
-		player.GetComponent<SpriteRenderer>().color = Color.clear;
-		Instantiate (explosion, player.transform.position, Quaternion.identity);
-			Destroy (player, 2f);
+		Destroy (trail);//уничтожаем след игрока
+		player.GetComponent<SpriteRenderer>().color = Color.clear;//переводим игрока в режим невидимости
+		Instantiate (explosion, player.transform.position, Quaternion.identity);//создаем взрыв
+			Destroy (player, 2f);//уничтожаем игрока
 
 	}
 }

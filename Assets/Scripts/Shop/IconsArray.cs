@@ -12,7 +12,9 @@ public class IconsArray : MonoBehaviour {
 	public Image previewArrowSprite;//спрайт показа скина 
 
 	void OnEnable(){
-		
+
+		//PlayerPrefs.SetInt ("HighScore", 0);//обнуление highscore
+
 		/*PlayerPrefs.SetString (arrowsIcons[0].name, "Open");
 			PlayerPrefs.SetString ("Arrow (1)", "Close");
 			PlayerPrefs.SetString ("Arrow (2)", "Close");

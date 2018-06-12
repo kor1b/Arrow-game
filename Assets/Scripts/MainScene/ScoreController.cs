@@ -18,16 +18,16 @@ public class ScoreController : MonoBehaviour {
 		if (gameController.gameHasEnded == false) {
 		
 			if (score <= 1000)
-				coins = 2;
+				coins = 0;
 
 			if (1000 < score && score <= 3000)
-				coins = Random.Range (0, 1);
+				coins = Random.Range (0, 3);
 
 			if (3000 < score && score <= 5000)
-				coins = Random.Range (1, 3);
+				coins = Random.Range (3, 5);
 
 			if (score > 5000)
-				coins = Random.Range (3, 10);
+				coins = Random.Range (5, 10);
 	}
 	}
 }
