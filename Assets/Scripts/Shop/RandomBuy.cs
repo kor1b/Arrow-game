@@ -19,17 +19,35 @@ public class RandomBuy : MonoBehaviour {
 	GameObject previousRandGO;
 	GameObject randGO;
 
+	Animator anim;
+
+	void CheckMoney(){
+		//если достаточно денег, то запускаем анимацию
+		if (PlayerPrefs.GetInt ("Coins") >= price)
+			anim.enabled = true;
+		//если НЕ достаточно денег, то выключаем анимацию
+		else
+			anim.enabled = false;
+	}
+
+	void OnEnable(){
+		anim = GetComponent<Animator> ();
+		CheckMoney ();
+	}
+
 	void Start () {
-		
-			for (int i = 1; i < allArrows.Length; i++) {
+		PlayerPrefs.SetInt ("Coins", 0);
+
+		for (int i = 1; i < allArrows.Length; i++) {
 			if (PlayerPrefs.GetString(allArrows [i].name) != "Open")
 				closeArrows.Add (allArrows[i]);
-				}
+		}
 	}
 		
 	public void OnMouseUpAsButton(){
 
 		if (PlayerPrefs.GetInt ("Coins") >= price) {
+			anim.enabled = false;//выключение анимации 
 			buttonPressed = true;
 			StartCoroutine (TimeBtwRandom ());
 
@@ -46,7 +64,7 @@ public class RandomBuy : MonoBehaviour {
 			Debug.Log (closeArrows [removeNum].name);
 
 			PlayerPrefs.SetInt ("Coins", PlayerPrefs.GetInt ("Coins") - price);
-		}
+		} 
 	}
 
 	IEnumerator TimeBtwRandom(){
@@ -65,8 +83,6 @@ public class RandomBuy : MonoBehaviour {
 
 					selectSprite.transform.position = randGO.transform.transform.position;
 						//randGO.GetComponent<Image> ().sprite = randGO.GetComponent<SelectArrows> ().randomChooseImage;
-
-						Debug.Log (randGO.name);
 
 						yield return new WaitForSeconds (0.2f);//время между выбором следующего скина
 
@@ -108,6 +124,8 @@ public class RandomBuy : MonoBehaviour {
 			if (closeArrows.Count < 1)//если не осталось скинов, то кнопка рандома пропадает
 				Destroy (gameObject);
 			}
+
+		CheckMoney ();
 
 		}
 	

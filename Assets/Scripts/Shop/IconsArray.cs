@@ -25,7 +25,7 @@ public class IconsArray : MonoBehaviour {
 			PlayerPrefs.SetString ("Arrow (7)", "Close");
 			PlayerPrefs.SetString ("Arrow (8)", "Close");
 
-		PlayerPrefs.SetInt ("Coins", 10000);
+		PlayerPrefs.SetInt ("Coins", 450);
 		PlayerPrefs.SetInt ("BuyArrowCount", 0);
         PlayerPrefs.SetString ("Now Arrow", "Arrow"); //нужно зайти в магазин, чтобы поменялась стрелка в главном меню
 */
