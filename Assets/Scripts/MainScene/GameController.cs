@@ -15,11 +15,18 @@ public class GameController : MonoBehaviour {
 	public GameObject explosion;
 	public GameObject trail;
 
+	public GameObject teachingText;//текст обучения
+
 	[HideInInspector]
 	public bool gameHasEnded = false;
 
 	void Start(){
 		backgroundController.ChangeBackground ();
+	}
+
+	void Update(){
+		if (Input.GetMouseButtonDown(0))//при тапе, уничтожается текст обучения
+		Destroy (teachingText);
 	}
 
 	public void EndGame(){
@@ -30,6 +37,7 @@ public class GameController : MonoBehaviour {
 			playerController.enabled = false;
 			spawnLets.StopSpawn();
 
+		Destroy (teachingText);//уничтожение обучаещего текста
 
 			//PlayerPrefs.SetInt ("Coins", PlayerPrefs.GetInt ("Coins") + scoreController.coins);
 			PlayerPrefs.SetInt ("Score", scoreController.score);

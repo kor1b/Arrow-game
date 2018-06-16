@@ -43,7 +43,7 @@ public class LetMoving : MonoBehaviour {
 
 		//заменить maxLetSpeed на minLetSpeed + 2f
 
-		//при проигрыше выставляет альфа канал препятствий на 0
+		//при проигрыше выставляет альфа-канал препятствий на 0
 		if (gameController.gameHasEnded) {
 			for (int i = 0; i < spawnLets.letsArr.Count; i++) {
 				
@@ -80,11 +80,9 @@ public class LetMoving : MonoBehaviour {
 
 		if (Input.GetMouseButtonDown (0) && gameController.gameHasEnded == false) {
 				
-			if (spawnLets.letsArr [0].transform.position.y > -3f) {
 				tap = true;
 				playerController.speed = 0f;
 				letSpeed = fastMoveSpeed;
-			}
 		}
 
 		//замедление после ускорения
@@ -100,27 +98,26 @@ public class LetMoving : MonoBehaviour {
 		}
 			
 		if (gameController.gameHasEnded == false) {
-			if (spawnLets.letsArr [0].transform.position.y < -3.25f) {
+			if (spawnLets.letsArr [0].transform.position.y < -3.5f) {
 
-				playerController.speed = playerController.maxSpeed;
-				letSpeed = minLetSpeed;
 				for (int i = 0; i < spawnLets.letsArr.Count; i++) {
 					spawnLets.letsArr [i].GetComponent<LetMoving> ().tap = false;
+					playerController.speed = playerController.maxSpeed;
 					 
 					if (spawnLets.letsArr.Count > 1)
 						spawnLets.letsArr.RemoveAt (0);
-
 				}
 			}
 		}
 			
 			if (tap == false) {
-				playerController.speed = playerController.maxSpeed;
-			letSpeed = minLetSpeed;
+			    letSpeed = minLetSpeed;
 			}
 		
 		//PlayerPrefs.SetFloat ("MinLetSpeed", minLetSpeed + 0.001f);
 		//PlayerPrefs.SetFloat ("MaxLetSpeed", maxLetSpeed + 0.001f);
+
+
 	}
 }
 

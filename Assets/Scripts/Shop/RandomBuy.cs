@@ -11,6 +11,9 @@ public class RandomBuy : MonoBehaviour {
 	public Image selectSprite;
 	public Image previewArrowSprite;
 
+	public Text notEnoughCoinsText;//префаб "Недостаточно монет"
+	public Button watchVideoBtn;
+
 	bool buttonPressed = false;
 	public int removeNum;
 
@@ -36,7 +39,7 @@ public class RandomBuy : MonoBehaviour {
 	}
 
 	void Start () {
-		PlayerPrefs.SetInt ("Coins", 0);
+		PlayerPrefs.SetInt ("Coins", 10);
 
 		for (int i = 1; i < allArrows.Length; i++) {
 			if (PlayerPrefs.GetString(allArrows [i].name) != "Open")
@@ -64,7 +67,10 @@ public class RandomBuy : MonoBehaviour {
 			Debug.Log (closeArrows [removeNum].name);
 
 			PlayerPrefs.SetInt ("Coins", PlayerPrefs.GetInt ("Coins") - price);
-		} 
+		} else {
+			Text textPrefab = Instantiate (notEnoughCoinsText, transform.position, Quaternion.identity) as Text;
+			textPrefab.transform.SetParent (transform, false);
+		}
 	}
 
 	IEnumerator TimeBtwRandom(){
@@ -121,8 +127,11 @@ public class RandomBuy : MonoBehaviour {
 				gameObject.GetComponent<Button> ().interactable = true;
 				back.GetComponent<Button> ().interactable = true;
 
-			if (closeArrows.Count < 1)//если не осталось скинов, то кнопка рандома пропадает
+			if (closeArrows.Count < 1) {//если не осталось скинов, то кнопка рандома пропадает
 				Destroy (gameObject);
+				watchVideoBtn.GetComponent<RectTransform> ().position = new Vector2 (watchVideoBtn.GetComponent<RectTransform> ().position.x - 75,
+					watchVideoBtn.GetComponent<RectTransform> ().position.y); 
+			}
 			}
 
 		CheckMoney ();

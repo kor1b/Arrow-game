@@ -15,10 +15,10 @@ public class IconsArray : MonoBehaviour {
 
 		//PlayerPrefs.SetInt ("HighScore", 0);//обнуление highscore
 
-		/*PlayerPrefs.SetString (arrowsIcons[0].name, "Open");
-			PlayerPrefs.SetString ("Arrow (1)", "Close");
+		//PlayerPrefs.SetString (arrowsIcons[0].name, "Open");
+			//PlayerPrefs.SetString ("Arrow (1)", "Close");
 			PlayerPrefs.SetString ("Arrow (2)", "Close");
-		PlayerPrefs.SetString (arrowsIcons[3].name, "Close");
+		/*PlayerPrefs.SetString (arrowsIcons[3].name, "Close");
 			PlayerPrefs.SetString ("Arrow (4)", "Close");
 			PlayerPrefs.SetString ("Arrow (5)", "Close");
 			PlayerPrefs.SetString ("Arrow (6)", "Close");
