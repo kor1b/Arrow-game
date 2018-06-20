@@ -14,14 +14,16 @@ public class GameController : MonoBehaviour {
 	public GameObject player;
 	public GameObject explosion;
 	public GameObject trail;
-
 	public GameObject teachingText;//текст обучения
 
 	[HideInInspector]
 	public bool gameHasEnded = false;
 
+	SpriteRenderer playerSprite;
+
 	void Start(){
 		backgroundController.ChangeBackground ();
+		playerSprite = player.GetComponent<SpriteRenderer> ();
 	}
 
 	void Update(){
@@ -47,11 +49,9 @@ public class GameController : MonoBehaviour {
 				PlayerPrefs.SetInt ("HighScoreHelper", scoreController.score + 1);
 				PlayerPrefs.SetInt ("HighScore", scoreController.score);
 			}
-
-		//PlayerPrefs.SetFloat ("MinLetSpeed", 2f);
-		//PlayerPrefs.SetFloat ("MaxLetSpeed", 4f);
+			
 		Destroy (trail);//уничтожаем след игрока
-		player.GetComponent<SpriteRenderer>().color = Color.clear;//переводим игрока в режим невидимости
+		playerSprite.color = Color.clear;//переводим игрока в режим невидимости
 		Instantiate (explosion, player.transform.position, Quaternion.identity);//создаем взрыв
 			Destroy (player, 2f);//уничтожаем игрока
 

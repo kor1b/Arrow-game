@@ -36,9 +36,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4779476029904932}
   - component: {fileID: 212369123152104288}
-  - component: {fileID: 60651022566756798}
   - component: {fileID: 114471348075908778}
   - component: {fileID: 50497050904079922}
+  - component: {fileID: 61229039487883694}
   m_Layer: 0
   m_Name: LeftLet
   m_TagString: Hazard
@@ -92,7 +92,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &60506529752253492
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -121,8 +121,8 @@ PolygonCollider2D:
       - {x: -1.28, y: -0.16}
       - {x: 1.28, y: -0.16}
       - {x: 1.28, y: 0.16}
---- !u!60 &60651022566756798
-PolygonCollider2D:
+--- !u!61 &61229039487883694
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -143,12 +143,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -2.56, y: 0.16}
-      - {x: -2.56, y: -0.16}
-      - {x: 2.369166, y: -0.16}
-      - {x: 2.56, y: 0.16}
+  serializedVersion: 2
+  m_Size: {x: 5.12, y: 0.32}
+  m_EdgeRadius: 0
 --- !u!114 &114471348075908778
 MonoBehaviour:
   m_ObjectHideFlags: 1

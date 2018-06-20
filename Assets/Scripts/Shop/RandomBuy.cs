@@ -39,7 +39,6 @@ public class RandomBuy : MonoBehaviour {
 	}
 
 	void Start () {
-		PlayerPrefs.SetInt ("Coins", 10);
 
 		for (int i = 1; i < allArrows.Length; i++) {
 			if (PlayerPrefs.GetString(allArrows [i].name) != "Open")
@@ -55,7 +54,7 @@ public class RandomBuy : MonoBehaviour {
 			StartCoroutine (TimeBtwRandom ());
 
 			for (int k = 0; k < allArrows.Length; k++) {
-				//allArrows [k].GetComponent<SelectArrows> ().UnSelect ();
+				
 				allArrows [k].GetComponent<Button> ().interactable = false;
 			}
 			gameObject.GetComponent<Button> ().interactable = false;
@@ -88,30 +87,22 @@ public class RandomBuy : MonoBehaviour {
 						}
 
 					selectSprite.transform.position = randGO.transform.transform.position;
-						//randGO.GetComponent<Image> ().sprite = randGO.GetComponent<SelectArrows> ().randomChooseImage;
 
 						yield return new WaitForSeconds (0.2f);//время между выбором следующего скина
 
-						/*for (int k = 0; k < closeArrows.Count; k++) {
-							closeArrows [k].GetComponent<SelectArrows> ().UnSelect ();
-						}*/
 					}
-				} //else if (closeArrows.Count == 1)
-					//closeArrows [0].GetComponent<Image> ().sprite = closeArrows [0].GetComponent<SelectArrows> ().startImage;
-
+				} 
 			selectSprite.transform.position = closeArrows [removeNum].transform.position;
 
 				//Мигание окончательно выбранного скина
 				for (int j = 0; j < 3; j++) {
-					//closeArrows [removeNum].GetComponent<Image> ().sprite = closeArrows [removeNum].GetComponent<SelectArrows> ().randomChooseImage;
+					
 				selectSprite.GetComponent<RectTransform>().localScale = Vector2.Lerp (new Vector2 (0.8f, 0.8f), Vector2.zero, 5f);	
 				yield return new WaitForSeconds (0.1f);//время между морганием
-					//closeArrows [removeNum].GetComponent<Image> ().sprite = closeArrows [removeNum].GetComponent<SelectArrows> ().startImage;
+
 				selectSprite.GetComponent<RectTransform>().localScale = Vector2.Lerp (Vector2.zero, new Vector2 (0.8f, 0.8f), 5f);	
 				yield return new WaitForSeconds (0.1f);//время между морганием
 				}
-
-				//closeArrows [removeNum].GetComponent<Image> ().sprite = closeArrows [removeNum].GetComponent<SelectArrows> ().clickImage;
 
 				PlayerPrefs.SetString ("Now Arrow", closeArrows[removeNum].name);
 

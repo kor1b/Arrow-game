@@ -10,8 +10,6 @@ public class Collision : MonoBehaviour {
 			
 			FindObjectOfType<GameController> ().EndGame();
 
-			//rb.AddForce (transform.position, ForceMode2D.Impulse);
-			//rb.AddTorque (0.1f, ForceMode2D.Impulse);
 		}
 	}
 }

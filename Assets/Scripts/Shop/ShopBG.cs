@@ -9,7 +9,6 @@ public class ShopBG : MonoBehaviour {
 
 	void OnEnable(){
 		mainMenu.SetActive (false);
-		//mainScene.SetActive (false);
 		gameOver.SetActive (false);
 	}
 		

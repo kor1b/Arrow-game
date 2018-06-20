@@ -18,9 +18,6 @@ public class PlayerController : MonoBehaviour {
 	public bool enterTheGate;
 	bool direction = true;
 
-	//public int score;
-	//public Text scoreText;
-
 	public static Sprite arrowSprite;
 	public Sprite standartSprite;
 
@@ -28,7 +25,6 @@ public class PlayerController : MonoBehaviour {
 
 	void Start () {
 
-		//score = 0;
 		enterTheGate = false;
 
 		rb = GetComponent<Rigidbody2D> ();
@@ -66,10 +62,7 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerExit2D (Collider2D gate){
 		if (gate.gameObject.CompareTag ("Gate")) {
 			enterTheGate = true;
-			//score++;
-			//if (gameController.gameHasEnded == true)
-				//score--;
-			//scoreText.text = "" + score.ToString ();
+
 		}
 	}
 }

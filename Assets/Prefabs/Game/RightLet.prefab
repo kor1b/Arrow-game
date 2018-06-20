@@ -36,9 +36,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4033020029104314}
   - component: {fileID: 212387047406355730}
-  - component: {fileID: 60746902757064028}
   - component: {fileID: 114163719840569944}
   - component: {fileID: 50233972184001032}
+  - component: {fileID: 61753497440221634}
   m_Layer: 0
   m_Name: RightLet
   m_TagString: Hazard
@@ -92,7 +92,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &60543945025793670
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -121,8 +121,8 @@ PolygonCollider2D:
       - {x: -1.28, y: -0.16}
       - {x: 1.28, y: -0.16}
       - {x: 1.095514, y: 0.15957114}
---- !u!60 &60746902757064028
-PolygonCollider2D:
+--- !u!61 &61753497440221634
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -143,12 +143,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -2.56, y: 0.16}
-      - {x: -2.3740969, y: -0.16431713}
-      - {x: 2.56, y: -0.16}
-      - {x: 2.56, y: 0.16}
+  serializedVersion: 2
+  m_Size: {x: 5.12, y: 0.32}
+  m_EdgeRadius: 0
 --- !u!114 &114163719840569944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -163,6 +160,9 @@ MonoBehaviour:
   letSpeed: 0
   maxLetSpeed: 4
   minLetSpeed: 2
+  fastMoveSpeed: 8
+  lerpSpeed: 2
+  tap: 0
 --- !u!212 &212387047406355730
 SpriteRenderer:
   m_ObjectHideFlags: 1

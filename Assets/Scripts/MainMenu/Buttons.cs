@@ -89,7 +89,7 @@ public class Buttons : MonoBehaviour {
 
 	IEnumerator Play(){
 
-		arrow.GetComponent<Animator> ().enabled = true;
+		//arrow.GetComponent<Animator> ().enabled = true;//анимация полета ракеты
 
 		//screenFader.fadeState = ScreenFader.FadeState.In;
 		yield return new WaitForSeconds (1f);
