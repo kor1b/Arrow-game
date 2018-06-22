@@ -41,14 +41,14 @@ public class GameController : MonoBehaviour {
 
 		Destroy (teachingText);//уничтожение обучаещего текста
 
-			//PlayerPrefs.SetInt ("Coins", PlayerPrefs.GetInt ("Coins") + scoreController.coins);
+			/*PlayerPrefs.SetInt ("Coins", PlayerPrefs.GetInt ("Coins") + scoreController.coins);
 			PlayerPrefs.SetInt ("Score", scoreController.score);
 			PlayerPrefs.SetInt ("HighScoreHelper", scoreController.score);
 
 			if (scoreController.score > PlayerPrefs.GetInt ("HighScore", 0)) {
 				PlayerPrefs.SetInt ("HighScoreHelper", scoreController.score + 1);
 				PlayerPrefs.SetInt ("HighScore", scoreController.score);
-			}
+			}*/
 			
 		Destroy (trail);//уничтожаем след игрока
 		playerSprite.color = Color.clear;//переводим игрока в режим невидимости

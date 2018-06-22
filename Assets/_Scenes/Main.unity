@@ -3403,13 +3403,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1072906491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 366336f7caf2a234d97ed3fd55350fdf, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d33f44caa1aa1a48b23b28268945997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 1072906494}
-  gameController: {fileID: 155440908}
-  score: 0
-  coins: 0
+  scoreController: {fileID: 1873711989}
 --- !u!114 &1072906494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7489,7 +7486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lets:
   - {fileID: 1470734095325692, guid: d27bb3fac3377cb429585ee461c0a239, type: 2}
-  - {fileID: 1406322732995326, guid: 0123b6d28eb72ca4b978f937cf3482a8, type: 2}
+  - {fileID: 1593112836863060, guid: 2eccd2ca25616d4428ba5fd7ed30dbd5, type: 2}
   spawnTime:
   - 3
   - 2
