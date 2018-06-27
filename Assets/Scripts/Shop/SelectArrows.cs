@@ -28,6 +28,9 @@ public class SelectArrows : MonoBehaviour {
 	IconsArray iconsArrayScript;
 	Image shopPreviewArrowSprite;
 
+	Transform _selectTransform;
+	Transform _transform;
+
 	void Awake(){
 
 		iconsArrayScript = iconsArray.GetComponent<IconsArray> ();
@@ -35,17 +38,20 @@ public class SelectArrows : MonoBehaviour {
 
 		if (PlayerPrefs.GetString ("Arrow") != "Open")
 			PlayerPrefs.SetString ("Arrow", "Open");
+		
+		_selectTransform = selectSprite.transform;
+		_transform = transform;
 	}
 
 	//перемещение объекта выделения
 	void Update(){
 
 		if (click == true) {
-			selectSprite.transform.position = Vector3.Lerp (selectSprite.transform.position, gameObject.transform.position, selectSpeed);
+			_selectTransform.position = Vector3.Lerp (_selectTransform.position, _transform.position, selectSpeed);
 			iconsArrayScript.InteractebleOff ();
 		}
 
-		if (Vector2.Distance (selectSprite.transform.position, gameObject.transform.position) < 1) {
+		if (Vector2.Distance (_selectTransform.position, _transform.position) < 1) {
 			click = false;
 			iconsArrayScript.InteractebleOn ();
 		}

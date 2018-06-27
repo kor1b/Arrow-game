@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿#define TAP
+//#define GETBUTTON
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +13,8 @@ public class LetMoving : MonoBehaviour {
 	public float minLetSpeed;
 	public float fastMoveSpeed = 8f;//скорость при геймплее с тапом
 	public float lerpSpeed = 2f;
-	public bool tap;
+    bool tap;
+
 	PlayerController playerController;
 	SpawnLets spawnLets;
 	GameController gameController;
@@ -19,6 +22,7 @@ public class LetMoving : MonoBehaviour {
 
 	SpriteRenderer spriteRenderer;
 	Transform letTransform;
+	Transform _playerTransform;
 
 	void Start(){
 
@@ -39,6 +43,8 @@ public class LetMoving : MonoBehaviour {
 
 		if (gameControllerObject != null)
 			gameController = gameControllerObject.GetComponent<GameController> ();
+
+		_playerTransform = player.transform;
 	}
 		
 	void Update () {
@@ -59,24 +65,28 @@ public class LetMoving : MonoBehaviour {
 
 				}*/
 			}
+			
+		letTransform.Translate(Vector2.down * Time.deltaTime * letSpeed);
 
-
-		letTransform.position = Vector2.MoveTowards (letTransform.position, new Vector2 (letTransform.position.x, -10), Time.deltaTime * letSpeed);
 
 		if (letTransform.position.y == -10) {
 			spawnLets.letsArr.Remove (gameObject);
 			Destroy (gameObject);
 		}
 
+		#if GETBUTTON
 		//геймплей с удерживанием
-		/*if (Input.GetMouseButton(0)) {
+		if (Input.GetMouseButton(0)) {
 			
 				playerController.speed = 0f;
 				letSpeed = maxLetSpeed;
 			}  
-	*/
-		//геймплей с тапом
+	
+		#endif
 
+
+		#if TAP
+		//геймплей с тапом
 		if (Input.GetMouseButtonDown (0) && gameController.gameHasEnded == false) {
 				
 				tap = true;
@@ -88,7 +98,7 @@ public class LetMoving : MonoBehaviour {
 		for (int i = 0; i < spawnLets.letsArr.Count; i++) {
 			if (spawnLets.letsArr [0].transform.position.y > -3.25f && spawnLets.letsArr [0].transform.position.y < -2f && letSpeed > 2) {
 
-				if (Vector2.Distance (player.transform.position, spawnLets.letsArr [0].transform.position) < 1f)  
+				if (Vector2.Distance (_playerTransform.position, spawnLets.letsArr [0].transform.position) < 1f)  
 					letSpeed -= 0.3f;
 				
 				else
@@ -112,6 +122,8 @@ public class LetMoving : MonoBehaviour {
 			if (tap == false) {
 			    letSpeed = minLetSpeed;
 			}
-	}
+	
+		#endif
+}
 }
 

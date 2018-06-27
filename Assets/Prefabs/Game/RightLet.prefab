@@ -84,7 +84,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 200
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -161,8 +161,7 @@ MonoBehaviour:
   maxLetSpeed: 4
   minLetSpeed: 2
   fastMoveSpeed: 8
-  lerpSpeed: 2
-  tap: 0
+  lerpSpeed: 5
 --- !u!212 &212387047406355730
 SpriteRenderer:
   m_ObjectHideFlags: 1
