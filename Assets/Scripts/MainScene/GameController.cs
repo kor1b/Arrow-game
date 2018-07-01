@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour {
 			gameHasEnded = true;
 
 			playerController.enabled = false;
-			spawnLets.StopSpawn();
+			//spawnLets.StopSpawn();
 
 
 			//PlayerPrefs.SetInt ("Coins", PlayerPrefs.GetInt ("Coins") + scoreController.coins);

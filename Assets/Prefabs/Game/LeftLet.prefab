@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 60651022566756798}
   - component: {fileID: 114471348075908778}
   - component: {fileID: 50497050904079922}
+  - component: {fileID: 114780964245868774}
   m_Layer: 0
   m_Name: LeftLet
   m_TagString: Hazard
@@ -166,6 +167,22 @@ MonoBehaviour:
   fastMoveSpeed: 8
   lerpSpeed: 2
   tap: 0
+--- !u!114 &114780964245868774
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1470734095325692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44a59ec2ec20df0478752549c285d689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObject: {fileID: 1470734095325692}
+  pooledAmount: 0
+  willGrow: 1
+  pooledObjects:
+  - {fileID: 0}
 --- !u!212 &212369123152104288
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -179,6 +196,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
