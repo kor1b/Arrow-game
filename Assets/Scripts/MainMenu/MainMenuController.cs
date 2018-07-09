@@ -6,13 +6,15 @@ public class MainMenuController : MonoBehaviour {
 
 	public GameObject gameOver;
 	public GameObject[] gradients;
+	public BackgroundController backgroundController;
 
 	void Start(){
 
-		for (int i = 0; i < gradients.Length; i++) {
+		backgroundController.ChangeBackground ();
+		/*for (int i = 0; i < gradients.Length; i++) {
 			gradients [i].SetActive (false);
 		}
-		gradients [Random.Range (0, gradients.Length)].SetActive (true);
+		gradients [Random.Range (0, gradients.Length)].SetActive (true);*/
 	}
 
 	void OnEnabled () {

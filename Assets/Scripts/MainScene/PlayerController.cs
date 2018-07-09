@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	[HideInInspector]
-	public Rigidbody2D rb;
-
 	public float speed;
 	public float maxSpeed;
 	public float speedStartPosition;
@@ -18,20 +15,20 @@ public class PlayerController : MonoBehaviour {
 	public bool enterTheGate;
 	bool direction = true;
 
-	//public int score;
-	//public Text scoreText;
-
 	public static Sprite arrowSprite;
 	public Sprite standartSprite;
 
 	public GameController gameController;
 
+	Vector3 _needPosition;//позиция, куда двигается стрелка к началу игры
+	Transform _transform;
+
 	void Start () {
 
-		//score = 0;
-		enterTheGate = false;
+		_transform = transform;
+		_needPosition = new Vector3 (0, -2.5f, 0);
 
-		rb = GetComponent<Rigidbody2D> ();
+		enterTheGate = false;
 
 		GetComponent<SpriteRenderer> ().sprite = arrowSprite;
 
@@ -40,24 +37,24 @@ public class PlayerController : MonoBehaviour {
 
 	}
 		
-	void FixedUpdate () {
+	void Update () {
 
 		PlayerPrefs.SetString ("ReloadKey", "Zero");
 
-		if (rb.position.y != -2.5f) 
-			rb.position = Vector2.MoveTowards (transform.position, new Vector2 (0, -2.5f), Time.deltaTime * speedStartPosition);
-		
+		if (_transform.position.y != -2.5f) {
+			_transform.position = Vector2.MoveTowards (_transform.position, _needPosition, Time.deltaTime * speedStartPosition);
+		}
 		else {
 
 		if (direction){
-			rb.position = Vector2.MoveTowards (rb.position, rightMaxPos, Time.deltaTime * speed);
-			if (Vector2.Distance (rb.position, rightMaxPos) < minDistance)
+				_transform.position = Vector2.MoveTowards (_transform.position, rightMaxPos, Time.deltaTime * speed);
+				if (Vector2.Distance (_transform.position, rightMaxPos) < minDistance)
 			direction =! direction;
 	}
 
 		if (!direction) {
-			rb.position = Vector2.MoveTowards (rb.position, leftMaxPos, Time.deltaTime * speed);
-			if (Vector2.Distance (rb.position, leftMaxPos) < minDistance)
+				_transform.position = Vector2.MoveTowards (_transform.position, leftMaxPos, Time.deltaTime * speed);
+				if (Vector2.Distance (_transform.position, leftMaxPos) < minDistance)
 				direction =! direction;
 		}
 	}
@@ -66,10 +63,7 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerExit2D (Collider2D gate){
 		if (gate.gameObject.CompareTag ("Gate")) {
 			enterTheGate = true;
-			//score++;
-			//if (gameController.gameHasEnded == true)
-				//score--;
-			//scoreText.text = "" + score.ToString ();
+
 		}
 	}
 }

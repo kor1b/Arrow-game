@@ -11,6 +11,9 @@ public class RandomBuy : MonoBehaviour {
 	public Image selectSprite;
 	public Image previewArrowSprite;
 
+	public Text notEnoughCoinsText;//префаб "Недостаточно монет"
+	public Button watchVideoBtn;
+
 	bool buttonPressed = false;
 	public int removeNum;
 
@@ -19,22 +22,39 @@ public class RandomBuy : MonoBehaviour {
 	GameObject previousRandGO;
 	GameObject randGO;
 
+	Animator anim;
+
+	void CheckMoney(){
+		//если достаточно денег, то запускаем анимацию
+		if (PlayerPrefs.GetInt ("Coins") >= price)
+			anim.enabled = true;
+		//если НЕ достаточно денег, то выключаем анимацию
+		else
+			anim.enabled = false;
+	}
+
+	void OnEnable(){
+		anim = GetComponent<Animator> ();
+		CheckMoney ();
+	}
+
 	void Start () {
-		
-			for (int i = 1; i < allArrows.Length; i++) {
+
+		for (int i = 1; i < allArrows.Length; i++) {
 			if (PlayerPrefs.GetString(allArrows [i].name) != "Open")
 				closeArrows.Add (allArrows[i]);
-				}
+		}
 	}
 		
 	public void OnMouseUpAsButton(){
 
 		if (PlayerPrefs.GetInt ("Coins") >= price) {
+			anim.enabled = false;//выключение анимации 
 			buttonPressed = true;
 			StartCoroutine (TimeBtwRandom ());
 
 			for (int k = 0; k < allArrows.Length; k++) {
-				//allArrows [k].GetComponent<SelectArrows> ().UnSelect ();
+				
 				allArrows [k].GetComponent<Button> ().interactable = false;
 			}
 			gameObject.GetComponent<Button> ().interactable = false;
@@ -46,6 +66,9 @@ public class RandomBuy : MonoBehaviour {
 			Debug.Log (closeArrows [removeNum].name);
 
 			PlayerPrefs.SetInt ("Coins", PlayerPrefs.GetInt ("Coins") - price);
+		} else {
+			Text textPrefab = Instantiate (notEnoughCoinsText, transform.position, Quaternion.identity) as Text;
+			textPrefab.transform.SetParent (transform, false);
 		}
 	}
 
@@ -64,32 +87,22 @@ public class RandomBuy : MonoBehaviour {
 						}
 
 					selectSprite.transform.position = randGO.transform.transform.position;
-						//randGO.GetComponent<Image> ().sprite = randGO.GetComponent<SelectArrows> ().randomChooseImage;
-
-						Debug.Log (randGO.name);
 
 						yield return new WaitForSeconds (0.2f);//время между выбором следующего скина
 
-						/*for (int k = 0; k < closeArrows.Count; k++) {
-							closeArrows [k].GetComponent<SelectArrows> ().UnSelect ();
-						}*/
 					}
-				} //else if (closeArrows.Count == 1)
-					//closeArrows [0].GetComponent<Image> ().sprite = closeArrows [0].GetComponent<SelectArrows> ().startImage;
-
+				} 
 			selectSprite.transform.position = closeArrows [removeNum].transform.position;
 
 				//Мигание окончательно выбранного скина
 				for (int j = 0; j < 3; j++) {
-					//closeArrows [removeNum].GetComponent<Image> ().sprite = closeArrows [removeNum].GetComponent<SelectArrows> ().randomChooseImage;
+					
 				selectSprite.GetComponent<RectTransform>().localScale = Vector2.Lerp (new Vector2 (0.8f, 0.8f), Vector2.zero, 5f);	
 				yield return new WaitForSeconds (0.1f);//время между морганием
-					//closeArrows [removeNum].GetComponent<Image> ().sprite = closeArrows [removeNum].GetComponent<SelectArrows> ().startImage;
+
 				selectSprite.GetComponent<RectTransform>().localScale = Vector2.Lerp (Vector2.zero, new Vector2 (0.8f, 0.8f), 5f);	
 				yield return new WaitForSeconds (0.1f);//время между морганием
 				}
-
-				//closeArrows [removeNum].GetComponent<Image> ().sprite = closeArrows [removeNum].GetComponent<SelectArrows> ().clickImage;
 
 				PlayerPrefs.SetString ("Now Arrow", closeArrows[removeNum].name);
 
@@ -105,9 +118,14 @@ public class RandomBuy : MonoBehaviour {
 				gameObject.GetComponent<Button> ().interactable = true;
 				back.GetComponent<Button> ().interactable = true;
 
-			if (closeArrows.Count < 1)//если не осталось скинов, то кнопка рандома пропадает
+			if (closeArrows.Count < 1) {//если не осталось скинов, то кнопка рандома пропадает
 				Destroy (gameObject);
+				watchVideoBtn.GetComponent<RectTransform> ().position = new Vector2 (watchVideoBtn.GetComponent<RectTransform> ().position.x - 75,
+					watchVideoBtn.GetComponent<RectTransform> ().position.y); 
 			}
+			}
+
+		CheckMoney ();
 
 		}
 	
